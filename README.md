@@ -1,6 +1,6 @@
 # AWS Well-Architected Tool Review Collector
 
-This solution demonstrates how to set up a small service that collects the high-level AWS Well-Architected review data for a given workload. It's currently for a single account, so you'd either need to modify this, or deploy this utility to each account you want to collect reviews from.
+This solution sets up a small service that collects the high-level AWS Well-Architected review data for a given workload. It's currently for a single account, so you'd either need to modify this, or deploy this utility to each account you want to collect reviews from.
 
 It's a convenient solution if you want, for example, to display the number of risks for a workload in your own dashboards or systems monitoring tool.
 

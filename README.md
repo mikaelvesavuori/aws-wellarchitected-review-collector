@@ -9,7 +9,7 @@ You could easily extend this solution with additional functionality; see [the AW
 ## Prerequisites
 
 - Recent [Node.js](https://nodejs.org/en/) (ideally 18+) installed.
-- Amazon Web Services (AWS) account with sufficient permissions so that you can deploy infrastructure. A naive but simple policy would be full rights for CloudWatch, Lambda, API Gateway, DynamoDB, X-Ray, and S3.
+- Amazon Web Services (AWS) account with sufficient permissions so that you can deploy infrastructure.
 - Ideally some experience with [Serverless Framework](https://www.serverless.com) as that's what we will use to deploy the service and infrastructure.
 - You will need to set up a workload in the AWS Well-Architected Tool manually, as that's not part of this solution.
 

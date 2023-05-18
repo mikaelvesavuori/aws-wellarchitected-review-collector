@@ -1,0 +1,53 @@
+service: aws-wellarchitected-review-collector
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  stage: ${opt:stage, 'prod'}
+  region: ${opt:region, 'eu-north-1'}
+  memorySize: ${opt:memory, 512}
+  timeout: ${opt:timeout, 10}
+  logRetentionInDays: ${opt:logRetentionInDays, 7}
+  versionFunctions: false
+  deploymentBucket:
+    blockPublicAccess: true
+    maxPreviousDeploymentArtifacts: 5
+    serverSideEncryption: AES256
+  stackTags:
+    Usage: ${self:service}
+  tags:
+    Usage: ${self:service}
+  apiGateway:
+    minimumCompressionSize: 1024
+
+plugins:
+  - serverless-esbuild
+  - serverless-offline
+  - serverless-iam-roles-per-function
+
+package:
+  individually: true
+
+custom:
+  config:
+    awsAccountNumber: ${opt:account, ''} # Add a fallback value if you want
+  esbuild:
+    bundle: true
+    minify: true
+
+functions:
+  GetReviews:
+    handler: src/index.handler
+    description: TODO
+    events:
+      - httpApi:
+          method: GET
+          path: /reviews
+    iamRoleStatements:
+      - Effect: 'Allow'
+        Action:
+          - wellarchitected:ListLensReviews
+        Resource:
+          - arn:aws:wellarchitected:eu-north-1:${self:custom.config.awsAccountNumber}:workload/*
+    environment:
+      REGION: ${aws:region}

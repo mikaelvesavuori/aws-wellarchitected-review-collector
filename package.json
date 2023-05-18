@@ -1,0 +1,59 @@
+{
+  "name": "aws-wellarchitected-review-collector",
+  "description": "Collect high-level AWS Well-Architected review data for a workload",
+  "version": "1.0.0",
+  "author": "Mikael Vesavuori",
+  "license": "MIT",
+  "keywords": [
+    "aws",
+    "wellarchitected"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mikaelvesavuori/aws-wellarchitected-review-collector"
+  },
+  "bugs": {
+    "url": "https://github.com/mikaelvesavuori/aws-wellarchitected-review-collector/issues"
+  },
+  "homepage": "https://github.com/mikaelvesavuori/aws-wellarchitected-review-collector",
+  "scripts": {
+    "start": "npx sls offline --reloadHandler",
+    "build": "npx sls package",
+    "deploy": "npx sls deploy",
+    "teardown": "npx sls remove"
+  },
+  "dependencies": {
+    "@aws-sdk/client-wellarchitected": "3"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "8",
+    "@types/node": "18",
+    "@typescript-eslint/eslint-plugin": "5",
+    "@typescript-eslint/parser": "5",
+    "eslint": "8",
+    "eslint-config-prettier": "8",
+    "eslint-plugin-prettier": "4",
+    "prettier": "2",
+    "serverless": "3",
+    "serverless-esbuild": "1",
+    "serverless-iam-roles-per-function": "3",
+    "serverless-offline": "12",
+    "ts-node": "latest",
+    "tslib": "2",
+    "typescript": "5"
+  },
+  "ava": {
+    "typescript": {
+      "rewritePaths": {
+        "src/": "lib/"
+      },
+      "compile": false
+    },
+    "files": [
+      "tests/unit/**/*.ts"
+    ],
+    "require": [
+      "ts-node/register"
+    ]
+  }
+}
